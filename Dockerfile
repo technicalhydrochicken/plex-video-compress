@@ -1,8 +1,11 @@
-FROM ubuntu:18.04
+FROM ubuntu:19.04
 
 COPY requirements.txt /
 
 RUN apt -y update && \
+    apt -y install software-properties-common && \
+    add-apt-repository -y ppa:stebbins/handbrake-releases && \
+    apt -y update && \
     apt -y install handbrake-cli python3-pip ffmpeg && \
     pip3 install -r /requirements.txt && \
     mkdir /scan && \
